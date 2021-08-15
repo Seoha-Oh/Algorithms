@@ -14,62 +14,56 @@ public class Baekjoon_2961 {
 	static int[] bArr;
 	static ArrayList<Integer> sList;
 	static ArrayList<Integer> bList;
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
 		int min = Integer.MAX_VALUE;
 
 		Scanner sc = new Scanner(System.in);
 
 		N = sc.nextInt();
-		
+
 		usedS = new boolean[N];
 		usedB = new boolean[N];
 		sArr = new int[N];
 		bArr = new int[N];
 		sList = new ArrayList<Integer>();
 		bList = new ArrayList<Integer>();
-		
-		for(int i = 0 ; i < N ; i++) {
+
+		for (int i = 0; i < N; i++) {
 			sArr[i] = sc.nextInt();
 			bArr[i] = sc.nextInt();
 		}
+
 		subsetS(0);
 		subsetB(0);
-//		for(int i = 0 ; i < sList.size()-1 ; i++) {
-//			System.out.print(sList.get(i) + " ");
-//		}
-//		System.out.println();
-//		for(int i = 0 ; i < bList.size()-1 ; i++) {
-//			System.out.print(bList.get(i) + " ");
-//		}
-//		
-		for(int i = 0 ; i < sList.size()-1 ; i++) {
-			for(int j = 0 ; j < bList.size()-1 ; j++) {
-//				if(( i == sList.size()-1 )&& (j == bList.size()-1))
-//					continue;
-				int tmpVal = sList.get(i) - bList.get(j);
-				tmpVal = Math.abs(tmpVal);
-				min = tmpVal < min ? tmpVal: min;
-			}
+
+		for (int i = 0; i < sList.size(); i++) {
+
+			int tmpVal = sList.get(i) - bList.get(i);
+			tmpVal = Math.abs(tmpVal);
+			min = tmpVal < min ? tmpVal : min;
 		}
 		System.out.println(min);
-	
+
 	}
 
 	static void subsetS(int idx) {
 
+		boolean flag = false;
+
 		if (idx == N) {
-			int val = 0;
+			int val = 1;
 			for (int i = 0; i < N; i++) {
 				if (usedS[i]) {
 					val *= sArr[i];
+					flag = true;
 				}
 			}
-//			if(val == 1)
-//				val = 0;
-			System.out.println(val);
+			if (flag == false) { // 부분집합 중 모든 원소를 사용하지 않은 경우, 즉 0개원소 사용
+				return;
+			}
 			sList.add(val);
 			return;
 		}
@@ -81,15 +75,21 @@ public class Baekjoon_2961 {
 		subsetS(idx + 1);
 
 	}
-	
+
 	static void subsetB(int idx) {
+
+		boolean flag = false;
 
 		if (idx == N) {
 			int val = 0;
 			for (int i = 0; i < N; i++) {
 				if (usedB[i]) {
 					val += bArr[i];
+					flag = true;
 				}
+			}
+			if (flag == false) { // 부분집합 중 모든 원소를 사용하지 않은 경우, 즉 0개원소 사용
+				return;
 			}
 			bList.add(val);
 			return;
@@ -100,7 +100,5 @@ public class Baekjoon_2961 {
 
 		usedB[idx] = false;
 		subsetB(idx + 1);
-
 	}
-
 }
