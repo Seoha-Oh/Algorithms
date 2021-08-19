@@ -2,7 +2,7 @@
 
 ---
 
-> last modified 2021-08-15
+> last modified 2021-08-17
 
 ## goal
 
@@ -18,6 +18,7 @@
 
 - SW Expert Academy
 - Baekjoon
+- Jungol
 
 ## Code
 
@@ -26,11 +27,11 @@
 ### 개념
 
 - Permutation 순열
-    - 예제
+    - [예제](https://github.com/Seoha-Oh/Algorithms/blob/a053da65e166a4219d1769ac93a77251adfc21ed/%EC%98%88%EC%A0%9C/Test01_perm.java)
 - Combination 조합
-    - 예제
+    - [예제](https://github.com/Seoha-Oh/Algorithms/blob/a053da65e166a4219d1769ac93a77251adfc21ed/%EC%98%88%EC%A0%9C/Test03_comb.java)
 - Subset 부분집합
-    - 예제
+    - [예제](https://github.com/Seoha-Oh/Algorithms/blob/a053da65e166a4219d1769ac93a77251adfc21ed/%EC%98%88%EC%A0%9C/Test02_subset.java)
 
 ### Baekjoon
 
@@ -63,13 +64,19 @@
 - 문제 리스트
     - [[2861] 도영이가 만든 맛있는 음식](https://github.com/Seoha-Oh/Algorithms/blob/2300cd81d5b94ffd4547087743707fca8764673e/Baekjoon/0812/Baekjoon_2961.java)
 
+> **Greedy**
+
+- 문제 리스트
+    - [2839] 설탕배달
+    - [[3109] 빵집](https://github.com/Seoha-Oh/Algorithms/blob/153f8ba8b9d9af20a1b27f4e1ce6dfd4fe47da23/Baekjoon/0819/Baekjoon_3109.java)
+
 - [2493] 탑 — 재 풀이 필요
 - 배열돌리기4
 - [2951] 슈퍼 마리오
 
 ### SW Expert Academy
 
-> 구현
+> **구현**
 
 - 문제 리스트
     - [[1861] 정사각형 방](https://github.com/Seoha-Oh/Algorithms/blob/962f794891494b78391da2a2ac27f9484aca959a/SWEA/0806/SWEA_1861.java)
@@ -101,3 +108,12 @@
     - [[5215] 햄버거 다이어트](https://github.com/Seoha-Oh/Algorithms/blob/962f794891494b78391da2a2ac27f9484aca959a/SWEA/0809/SWEA_5215.java)
 
 [3499] - 문제풀이 필요
+
+### Jungol
+
+> **Greedy**
+
+- 문제 리스트
+    - [[1828] 냉장고](https://github.com/Seoha-Oh/Algorithms/blob/698ec3b27b83b1d2d8f43fb39a6f6342ded53678/Jungol/Jungol_1828.java)
+
+/z문제 쿼드코트
