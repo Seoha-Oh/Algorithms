@@ -1,0 +1,97 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+
+public class BOJ_3584_가장가까공통조상 {
+    static ArrayList<Integer>[] tree;
+    static int[] depths, parents;
+    static boolean[] visit;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = null;
+        StringBuilder sb = new StringBuilder();
+        int TC = Integer.parseInt(br.readLine());
+
+        for (int tc = 0 ; tc < TC ; tc++){
+            int N = Integer.parseInt(br.readLine());
+
+            tree = new ArrayList[N+1];
+            depths = new int[N+1];
+            parents = new int[N+1];
+            visit = new boolean[N+1];
+
+            for (int n = 0 ; n <= N ; n ++){
+                tree[n] = new ArrayList<>();
+            }
+
+            int from = 0, to = 0;
+            boolean[] whoisParent = new boolean[N+1];
+
+            for (int n = 0 ; n < N -1 ; n++){
+                st = new StringTokenizer(br.readLine(), " ");
+
+                //  a b = a가 b의 부모이다. => b로 한번도 안 들어온 node가 root이다.
+                from = Integer.parseInt(st.nextToken());
+                to = Integer.parseInt(st.nextToken());
+
+                whoisParent[to] = true;
+                tree[from].add(to);
+                tree[to].add(from);
+            }
+
+            st = new StringTokenizer(br.readLine(), " ");
+            from = Integer.parseInt(st.nextToken());
+            to = Integer.parseInt(st.nextToken());
+
+            int root = -1;
+            for (int n = 1 ; n <= N ; n++){
+                if(!whoisParent[n]) root = n;
+            }
+            dfs(root, 0, 0); // node 1의 부모 없음, depth 0 으로 시작
+
+            int ans = LCA(from, to);
+            sb.append(ans+"\n");
+        }
+        System.out.println(sb);
+    }
+
+    //level과 parent조회 및 저장
+    public static void dfs(int current, int parent, int depth){
+        visit[current] = true;
+        parents[current] = parent;
+        depths[current] =  depth;
+//        System.out.println("currnet = " + current + " parent = " + parent + " depth = " + depth);
+
+        for (int nextNode : tree[current]){
+            if(!visit[nextNode]){
+                dfs(nextNode, current, depth+1);
+            }
+        }
+    }
+
+    // a와 b의 level을 맞춰야합니다.
+    public static int LCA(int a, int b) {
+        int aLevel = depths[a];
+        int bLevel = depths[b];
+        // b level이 더 깊은 경우 : b가 a에 맞게 올라와야함 => b의 부모로 올라가야합니다.
+        while (aLevel < bLevel){
+            //b의 부모를 찾는다.
+            b = parents[b];
+            // 찾은 부모의 level을 찾는다.
+            bLevel = bLevel - 1;
+        }
+
+        while (aLevel > bLevel){
+            a = parents[a];
+            aLevel = aLevel  - 1;
+        }
+
+        while (a != b){
+            a = parents[a];
+            b = parents[b];
+        }
+        return a;
+    }
+}
